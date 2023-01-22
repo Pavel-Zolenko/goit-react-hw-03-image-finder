@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import css from "components/styles.module.css";
 // import axios from "axios";
 import { Searchbar } from "components/Searchbar/Searchbar";
 import { Button } from "components/Button/Button";
@@ -13,7 +14,7 @@ export class App extends Component {
     images: [],
     page: 1,
     query: "",
-    loading: false,
+    
     
 
   };
@@ -27,7 +28,7 @@ export class App extends Component {
   searchQuery = newQuery => {
     this.setState({
       query: newQuery.trim(),
-      // images: []
+      
     })
     
   }
@@ -37,13 +38,14 @@ export class App extends Component {
   render() {
        
     return ( 
-      <>
-        {this.state.loading && <h1>Загружаем...</h1>}
+      <div className={css.App}>
+        
         <Searchbar onSubmit={this.searchQuery} />
         <Api query={ this.state.query} page={this.state.page} />
         <ToastContainer autoClose={3000} />
-        <Button loadMore={this.loadMore} />
-        </>
+        {this.state.query && <Button loadMore={this.loadMore} />}
+        
+        </div>
     )
     
   }
