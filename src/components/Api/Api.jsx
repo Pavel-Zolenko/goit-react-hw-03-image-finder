@@ -4,6 +4,7 @@ import { Loader } from "components/Loader/Loader";
 
 
 
+
 export class Api extends Component {
     state = {
         query: [],
@@ -13,7 +14,6 @@ export class Api extends Component {
     };
     
     
-
     componentDidUpdate(prevProps, prevState) {
                
         if (prevProps.query !== this.props.query || prevProps.page !== this.props.page ) {
@@ -27,14 +27,18 @@ export class Api extends Component {
                     )
                 })
                 .catch(error => this.state({error}))
-                .then(query => this.setState(prevState => ({
-                    query: [...prevState.query, ...query.hits]
-                })))
+                .then(query => {
+                    if (this.state.query.length > 12) {
+                        this.setState({ query: [...query.hits]})
+                    } else {
+                         this.setState(prevState => ({
+                    query: [...prevState.query, ...query.hits]}))
+                    }
+                })
             .finally(this.setState({showLoader: false}))
         }
     }
-                    
-
+          
 
     render() {
         const {error, query, showLoader} = this.state
@@ -47,3 +51,4 @@ export class Api extends Component {
         )
     }
 }
+

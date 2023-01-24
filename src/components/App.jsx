@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { ToastContainer } from 'react-toastify';
 import css from "components/styles.module.css";
-// import axios from "axios";
 import { Searchbar } from "components/Searchbar/Searchbar";
 import { Button } from "components/Button/Button";
 
@@ -14,9 +13,6 @@ export class App extends Component {
     images: [],
     page: 1,
     query: "",
-    
-    
-
   };
 
   loadMore = () => {
@@ -28,11 +24,9 @@ export class App extends Component {
   searchQuery = newQuery => {
     this.setState({
       query: newQuery.trim(),
-      
     })
     
-  }
-
+  };
 
 
   render() {
@@ -47,8 +41,7 @@ export class App extends Component {
         
         </div>
     )
-    
-  }
+     }
 };
 
 
