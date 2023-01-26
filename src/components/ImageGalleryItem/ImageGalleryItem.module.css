@@ -9,3 +9,9 @@
     transform: scale(1.03);
     cursor: zoom-in;
 }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

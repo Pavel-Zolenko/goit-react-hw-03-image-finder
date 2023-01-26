@@ -30,7 +30,6 @@ class App extends Component {
             
           } else {
             this.setState(prevState => ({
-              showStartTitle: false,
               images: [...prevState.images, ...data.hits],
               totalFound: data.totalHits,
               scroll: document.documentElement.scrollHeight,
