@@ -1,13 +1,12 @@
-import css from './ImageGallery.module.css';
-import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import PropTypes from 'prop-types';
+import css from './ImageGallery.module.css';
+import ImageGalleryItem from 'components/ImageGalleryItem';
 
-
-export const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images }) => {
   return (
-    <ul className={css.ImageGallery}>
+    <ul className={css.gallery}>
       {images.map(image => (
-        <li className={css.ImageGalleryItem} key={image.id}>
+        <li className={css.item} key={image.id}>
           <ImageGalleryItem image={image} />
         </li>
       ))}
@@ -15,8 +14,15 @@ export const ImageGallery = ({ images }) => {
   );
 };
 
+export default ImageGallery;
+
 ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  })).isRequired
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      tags: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
